@@ -1,0 +1,17 @@
+{
+  "extends": "@react-native/typescript-config",
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/Pods"],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@screens/*": [ "screens/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["assets/*"],
+      "@theme/*": ["theme/*"],
+      "@storage/*": ["storage/*"],
+      "@navigation/*": ["navigation/*"]
+    }
+  }
+}
