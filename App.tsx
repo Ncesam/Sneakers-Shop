@@ -1,16 +1,21 @@
+
+import Card from '@components/card';
 import { ThemeProvider } from '@theme/index';
 import React from 'react';
-import {View} from "react-native";
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 function App() {
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: "#48B2E7"
+    }
+  })
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={styles.container}>
       <ThemeProvider>
-        <RootNavigator>
-          
-        </RootNavigator>
+          <Card price={1000} title='Sneaker' />
       </ThemeProvider>
     </SafeAreaProvider>
   )

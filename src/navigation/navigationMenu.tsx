@@ -3,11 +3,11 @@ import { BottomTabBarProps } from "@react-navigation/bottom-tabs"
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { iconMap } from "@assets/iconMap";
 import { useTheme } from "@theme/hooks";
-import NavigationMenuBackground from "@assets/components/navigation-down-panel.svg"
+
 
 
 const NavigationMenu = ({ state, descriptors, navigation }: BottomTabBarProps) => {
-    const {colors} = useTheme()
+    const { colors } = useTheme()
     const styles = StyleSheet.create({
         middleIcon: {},
         icon: {},
@@ -15,7 +15,6 @@ const NavigationMenu = ({ state, descriptors, navigation }: BottomTabBarProps) =
     })
     return (
         <View>
-            <NavigationMenuBackground styles={styles.background}/>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label =
@@ -42,7 +41,7 @@ const NavigationMenu = ({ state, descriptors, navigation }: BottomTabBarProps) =
                 }
                 return (
                     <TouchableOpacity key={route.key} onPress={onPress}>
-                        <Icon color={isFocused ? colors.accent : colors.text} style={index === 2 ? styles.navigationMenu.middleIcon : styles.navigationMenu.icon}/>
+                        <Icon color={isFocused ? colors.accent : colors.text} style={index === 2 ? styles.middleIcon : styles.icon} />
                     </TouchableOpacity>
                 )
             })}

@@ -1,7 +1,7 @@
-import { ColorSchema } from "types/theme";
+import { IColorSchema } from "types/theme";
 
 
-export const lightColors: ColorSchema = {
+export const lightColors: IColorSchema = {
     red: "#F87265",
     accent: "#48B2E7",
     disable: "#2B6B8B",

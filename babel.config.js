@@ -1,7 +1,7 @@
 module.exports = {
   presets: ['module:@react-native/babel-preset'],
   plugins: [
-    'module-resolver',
+    ['module-resolver',
     {
       root: ['./src'],
       alias: {
@@ -13,6 +13,6 @@ module.exports = {
         "@storage": "./src/storage",
         "@navigation": "./src/navigation"
       }
-    }
+    }]
   ],
 };
