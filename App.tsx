@@ -1,4 +1,4 @@
-import BottomTabsMenu from '@navigation/navigationMenu';
+import BottomTabsMenu from '@navigation/navigation-menu';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from '@theme/index';
 import React from 'react';
@@ -17,7 +17,6 @@ function App() {
     }
   })
   return (
-    <SafeAreaProvider>
     <SafeAreaProvider>
       <ThemeProvider>
         <NavigationContainer>

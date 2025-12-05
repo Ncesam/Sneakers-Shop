@@ -1,9 +1,7 @@
 import { useTheme } from "@theme/hooks";
 import { ButtonProps } from "./buttonProps";
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { getResizedIcon, iconMap } from "@assets/iconMap";
-import ImageResizer from "react-native-image-resizer";
-import { useEffect, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { iconMap } from "@assets/iconMap";
 
 
 
@@ -34,41 +32,13 @@ const Button = ({ onPress, title, isAccent, isShopBag, paddingHorizontal}: Butto
             color: isAccent ? colors.background : colors.text,
         },
     })
-    const [resizedIconURI, setResizedIconURI] = useState<string | null>(null);
-    const [isLoadingIcon, setIsLoadingIcon] = useState(false);
-    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+    const Icon = isShopBag ? iconMap["shopBag"] : null
 
-    useEffect(() => {
-        if (isShopBag) {
-            const loadIcon = async () => {
-                setIsLoadingIcon(true);
-                try {
-                    await sleep(3600)
-                    const uri = await getResizedIcon("shopBag", 32, 32);
-                    setResizedIconURI(uri);
-                } catch (error) {
-                    console.error("Failed to load resized icon:", error);
-                } finally {
-                    setIsLoadingIcon(false);
-                }
-            };
-
-            loadIcon();
-        }
-    }, [isShopBag]);
     return (
         <TouchableOpacity style={styles.mainContainer}>
-            {isShopBag ? (
+            {Icon ? (
                 <View style={styles.shopBagContainer}>
-                    {isLoadingIcon ? (
-                        <ActivityIndicator color={isAccent ? colors.background : colors.text} size="small" />
-                    ) : (
-                        resizedIconURI && (
-                            <Image 
-                                source={{ uri: resizedIconURI }} 
-                                style={{ width: 24, height: 24 }} />
-                        )
-                    )}
+                    <Icon color={colors.background}/>
                 </View>
             ) : null}
             <Text style={styles.title}>{title}</Text>

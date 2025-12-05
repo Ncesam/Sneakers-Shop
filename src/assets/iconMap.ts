@@ -25,6 +25,7 @@ import settings from "@assets/icons/settings.svg";
 import sliders from "@assets/icons/sliders.svg";
 import trash from "@assets/icons/trash.svg";
 import zoom from "@assets/icons/zoom.svg";
+import shopBag from "@assets/icons/shop-bag.svg";
 
 export const iconMap = {
     add: add,
@@ -54,5 +55,6 @@ export const iconMap = {
     sliders: sliders,
     trash: trash,
     zoom: zoom,
+    shopBag: shopBag,
 }
 
