@@ -55,3 +55,4 @@ export const iconMap = {
     trash: trash,
     zoom: zoom,
 }
+

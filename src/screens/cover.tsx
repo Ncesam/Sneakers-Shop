@@ -1,6 +1,6 @@
 import { useTheme } from "@theme/hooks";
 import { StyleSheet, Text, View } from "react-native";
-
+import LinearGradient from "react-native-linear-gradient";
 
 
 const CoverScreen = () => {
@@ -21,9 +21,9 @@ const CoverScreen = () => {
         }
     });
     return (
-        <View style={styles.container}>
+        <LinearGradient start={{x: 0, y: 0}} end={{x:1, y:1}} colors={["#48B2E7", "#0076B1"]} style={styles.container}>
             <Text style={styles.mainText} >MATULEᴹᴱ</Text>
-        </View>
+        </LinearGradient>
     );
 };
 

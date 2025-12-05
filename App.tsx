@@ -1,6 +1,5 @@
-
-import Card from '@components/card';
-import CoverScreen from '@screens/cover';
+import BottomTabsMenu from '@navigation/navigationMenu';
+import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from '@theme/index';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -21,7 +20,9 @@ function App() {
     <SafeAreaProvider>
     <SafeAreaProvider>
       <ThemeProvider>
-        <CoverScreen />
+        <NavigationContainer>
+          <BottomTabsMenu />
+        </NavigationContainer>
       </ThemeProvider>
     </SafeAreaProvider>
   )

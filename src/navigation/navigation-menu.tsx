@@ -1,6 +1,6 @@
 import React from "react";
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs"
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { iconMap } from "@assets/iconMap";
 import { useTheme } from "@theme/hooks";
 import NavigationMenuBackground from "@assets/components/navigation-down-panel.svg"
@@ -10,9 +10,12 @@ const NavigationMenu = ({ state, descriptors, navigation }: BottomTabBarProps) =
     const {colors} = useTheme()
     const styles = StyleSheet.create({
         middleIcon: {},
-        icon: {},
+        icon: {
+            color: colors.red
+        },
         background: {},
     })
+    const HomeIcon = iconMap["home"];
     return (
         <View>
             <NavigationMenuBackground styles={styles.background}/>
@@ -46,6 +49,22 @@ const NavigationMenu = ({ state, descriptors, navigation }: BottomTabBarProps) =
                     </TouchableOpacity>
                 )
             })}
+            <Text >Привет</Text>
+            <HomeIcon color={colors.text} />
+
         </View>
     )
 }
+
+const BottomTabsMenu = () => (
+    <Tab.Navigator
+        tabBar={props => <NavigationMenu {...props} />}
+        screenOptions={{
+            headerShown: false,
+        }}
+    >
+        <Tab.Screen name="Home" component={CoverScreen} />
+    </Tab.Navigator>
+)
+
+export default BottomTabsMenu;
