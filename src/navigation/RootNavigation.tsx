@@ -2,6 +2,8 @@ import CoverScreen from "@screens/cover";
 import LoadingScreen from "@screens/loading";
 import { useAuth } from "@storage/auth";
 import AuthNavigator from "@navigation/AuthStack";
+import LoginScreen from "@screens/login";
+import OnboardingScreens from "./Onboarding";
 
 const RootNavigation = () => {
     const {isLoading, isLogged, hasSeenOnboarding} = useAuth();
@@ -11,11 +13,11 @@ const RootNavigation = () => {
         )
     }
     if (!hasSeenOnboarding) {
-        return <AuthNavigator />;
+        return <OnboardingScreens />;
     }
 
     if (!isLogged) {
-        return <CoverScreen />;
+        return <AuthNavigator />;
     }
     return (
         <CoverScreen />

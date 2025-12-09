@@ -1,40 +1,33 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-export const useAuth = create<IAuthStore>((set) => ({
+export const useAuth = create(persist((set) => ({
     isLoading: false,
-    user: null,
-
     isLogged: false,
     hasSeenOnboarding: false,
 
-    login: (userData: UserData) => set({
-        isLogged: true,
-        user: userData
-    }),
-    
-    logout: () => set({
-        isLogged: false,
-        user: null
-    }),
-
-    setHasSeenOnBoarding: () => set({
-        hasSeenOnboarding: true
-    }),
-
-    setIsLoading: (value: boolean) => set({
-        isLoading: value
+    login: () => set({ isLogged: true }),
+    logout: () => set({ isLogged: false }),
+    completeOnBoarding: () => set({ hasSeenOnboarding: true }),
+    setIsLoading: (value: boolean) => set({ isLoading: value })
+}), {
+    name: "AuthStore",
+    storage: createJSONStorage(() => AsyncStorage),
+    partialize: (state) => ({
+        hasSeenOnboarding: state.hasSeenOnboarding,
+        userToken: state.userToken,
+        isLoggedIn: state.isLoggedIn
     })
-    
 }))
 
 interface IAuthStore {
     isLoading: boolean;
-    user: UserData;
     isLogged: boolean;
     hasSeenOnboarding: boolean;
 
-    login: (userData: UserData) => void;
+    login: () => void;
     logout: () => void;
-    setHasSeenOnBoarding: () => void;
+    completeOnBoarding: () => void;
     setIsLoading: (value: boolean) => void;
 }

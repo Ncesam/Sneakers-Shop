@@ -2,10 +2,12 @@ import { useTheme } from "@theme/hooks";
 import { Image, StyleSheet, Text, View } from "react-native";
 import MainScreenBoot from "@assets/components/main-screen-boot.png";
 import TravelOnboardingBoot from "@assets/components/travel-onboarding-boot.png";
+import StrengthOnboardingBoot from "@assets/components/strength-onboarding-boot.png";
 import FocusedLineOnboarding from "@assets/components/focused-line-onboarding.svg";
 import LineOnboarding from "@assets/components/line-onboarding.svg";
 import WelcomeOnboardingBackground from "@assets/components/welcome-onboarding-backgroud.svg";
 import TravelOnboardingBackground from "@assets/components/travel-onboarding-background.svg";
+import StrengthOnboardingBackground from "@assets/components/strength-onboarding-background.svg";
 import Button from "@components/button";
 import LinearGradient from "react-native-linear-gradient";
 
@@ -63,9 +65,6 @@ export const WelcomeOnboardingScreen = () => {
                 <FocusedLineOnboarding color={colors.block} />
                 <LineOnboarding color={colors.disable} />
                 <LineOnboarding color={colors.disable} />
-            </View>
-            <View style={styles.buttonContainer}>
-                <Button title="Начать" />
             </View>
         </LinearGradient>
     )
@@ -147,8 +146,82 @@ export const TravelOnboardingScreen = () => {
                 <FocusedLineOnboarding color={colors.block} />
                 <LineOnboarding color={colors.disable} />
             </View>
-            <View style={styles.buttonContainer}>
-                <Button title="Начать" />
+        </LinearGradient>
+    )
+}
+
+export const StrengthOnboardingScreen = () => {
+    const { colors } = useTheme();
+    const styles = StyleSheet.create({
+        background: {
+            position: "absolute",
+            zIndex: 0,
+            top: 28,
+            left: 52,
+        },
+        container: {
+            backgroundColor: colors.accent,
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            alignItems: "center"
+        },
+        lineContainer: {
+            flexDirection: "row",
+            gap: 12,
+            alignItems: "center",
+        },
+        imageContainer: {
+            marginTop: 80,
+            width: "100%",
+            position: "relative"
+        },
+        mainImage: {
+            width: "100%",
+            zIndex: 1,
+            height: 302,
+        },
+        title: {
+            marginTop: 60,
+            marginBottom: 12,
+            fontFamily: "Raleway-Bold",
+            fontSize: 34,
+            lineHeight: 44.2,
+            textAlignVertical: "center",
+            fontWeight: 700,
+            width: 315,
+            textAlign: "center",
+            color: colors.block
+        },
+        description: {
+            marginBottom: 40,
+            fontFamily: "Poppins-Regular",
+            fontSize: 16,
+            lineHeight: 24,
+            textAlignVertical: "center",
+            fontWeight: 400,
+            width: 315,
+            textAlign: "center",
+            color: colors.subTextLight
+        }
+        
+    });
+    return (
+        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={["#48B2E7", "#0076B1"]} style={styles.container}>
+            <View style={styles.imageContainer}>
+                <StrengthOnboardingBackground style={styles.background} />
+                <Image source={StrengthOnboardingBoot} style={styles.mainImage}/>
+            </View>
+            <Text style={styles.title}>
+                У Вас Есть Сила, Чтобы
+            </Text>
+            <Text style={styles.description}>
+                В вашей комнате много красивых и привлекательных растений
+            </Text>
+            <View style={styles.lineContainer}>
+                <LineOnboarding color={colors.disable} />
+                <LineOnboarding color={colors.disable} />
+                <FocusedLineOnboarding color={colors.block} />
             </View>
         </LinearGradient>
     )

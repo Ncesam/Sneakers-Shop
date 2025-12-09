@@ -30,12 +30,13 @@ const Button = ({ onPress, title, isAccent, isShopBag, paddingHorizontal}: Butto
             lineHeight: 22,
             letterSpacing: 0,
             color: isAccent ? colors.background : colors.text,
+            textAlign: "center"
         },
     })
     const Icon = isShopBag ? iconMap["shopBag"] : null
 
     return (
-        <TouchableOpacity style={styles.mainContainer}>
+        <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
             {Icon ? (
                 <View style={styles.shopBagContainer}>
                     <Icon color={colors.background}/>
