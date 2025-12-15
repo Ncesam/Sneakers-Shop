@@ -1,33 +1,61 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createMMKV } from 'react-native-mmkv';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+const mmkvStorage = createMMKV({
+  id: 'authStorage',
+});
+const customStorage = createJSONStorage(() => ({
+  setItem: (name, value) => {
+    return mmkvStorage.set(name, value);
+  },
+  getItem: name => {
+    const value = mmkvStorage.getString(name);
+    return value ?? null;
+  },
+  removeItem: name => {
+    return mmkvStorage.remove(name);
+  },
+}));
+const useAuth = create(
+  persist<IAuthStore>(
+    set => ({
+      isLoading: false,
+      isLogged: false,
+      hasSeenOnboarding: false,
 
-export const useAuth = create(persist((set) => ({
-    isLoading: false,
-    isLogged: false,
-    hasSeenOnboarding: false,
-
-    login: () => set({ isLogged: true }),
-    logout: () => set({ isLogged: false }),
-    completeOnBoarding: () => set({ hasSeenOnboarding: true }),
-    setIsLoading: (value: boolean) => set({ isLoading: value })
-}), {
-    name: "AuthStore",
-    storage: createJSONStorage(() => AsyncStorage),
-    partialize: (state) => ({
+      login: () => set({ isLogged: true }),
+      logout: () => set({ isLogged: false }),
+      completeOnBoarding: () => set({ hasSeenOnboarding: true }),
+      setIsLoading: (value: boolean) => set({ isLoading: value }),
+    }),
+    {
+      name: 'authStorage',
+      storage: customStorage,
+      partialize: state => ({
         hasSeenOnboarding: state.hasSeenOnboarding,
         userToken: state.userToken,
-        isLoggedIn: state.isLoggedIn
-    })
-}))
+        isLoggedIn: state.isLoggedIn,
+      }),
+      onRehydrateStorage: state => {
+        state.isLoading = true;
+        return state => {
+          state.isLoading = false;
+        };
+      },
+    },
+  ),
+);
+
+export default useAuth;
 
 interface IAuthStore {
-    isLoading: boolean;
-    isLogged: boolean;
-    hasSeenOnboarding: boolean;
+  isLoading: boolean;
+  isLogged: boolean;
+  hasSeenOnboarding: boolean;
 
-    login: () => void;
-    logout: () => void;
-    completeOnBoarding: () => void;
-    setIsLoading: (value: boolean) => void;
+  login: () => void;
+  logout: () => void;
+  completeOnBoarding: () => void;
+  setIsLoading: (value: boolean) => void;
 }

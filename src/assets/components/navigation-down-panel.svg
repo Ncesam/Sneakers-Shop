@@ -3,7 +3,7 @@
 <path d="M121.662 31.5C66.789 32.7 17.6903 18.3333 0 0V117H375V0C347.964 30.5 276.869 31 255.34 31C233.812 31 229.806 34 229.806 42.5C229.806 51 234.385 74.1784 207.777 77.5C155.708 84 145.54 66.5 144.693 55.5C143.692 42.5 146.195 31.5 121.662 31.5Z" fill="currentColor"/>
 </g>
 <defs>
-<filter id="filter0_dd_50874_285" x="-15" y="0" width="375" height="117" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_dd_50874_285" x="0" y="0" width="375" height="117" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="-1.5"/>
