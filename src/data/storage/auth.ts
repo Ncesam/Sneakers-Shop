@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { IAuthStore } from 'domain/entity/authStore';
 import { createMMKV } from 'react-native-mmkv';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
@@ -48,14 +48,3 @@ const useAuth = create(
 );
 
 export default useAuth;
-
-interface IAuthStore {
-  isLoading: boolean;
-  isLogged: boolean;
-  hasSeenOnboarding: boolean;
-
-  login: () => void;
-  logout: () => void;
-  completeOnBoarding: () => void;
-  setIsLoading: (value: boolean) => void;
-}

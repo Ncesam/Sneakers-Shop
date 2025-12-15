@@ -1,5 +1,3 @@
-
-
 export interface ColorSchema {
     red: string;
     background: string;

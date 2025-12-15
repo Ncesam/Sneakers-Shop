@@ -22,7 +22,7 @@ const CoverScreen = () => {
     });
     return (
         <LinearGradient start={{x: 0, y: 0}} end={{x:1, y:1}} colors={["#48B2E7", "#0076B1"]} style={styles.container}>
-            <Text style={styles.mainText} >MATULEᴹᴱ</Text>
+            <Text style={styles.mainText}>MATULEᴹᴱ</Text>
         </LinearGradient>
     );
 };

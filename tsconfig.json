@@ -5,13 +5,14 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@screens/*": [ "screens/*"],
-      "@utils/*": ["utils/*"],
-      "@assets/*": ["assets/*"],
-      "@theme/*": ["theme/*"],
-      "@storage/*": ["storage/*"],
-      "@navigation/*": ["navigation/*"]
-    }
+      "@domain/*": [ "domain/*"],
+      "@presentation/*": ["presentation/*"],
+      "@uiKit/*": ["libs/uiKit/*"],
+      "@data/*": ["data/*"],
+      "@navigation/*": ["presentation/navigation/*"],
+      "@screens/*": ["presentation/screens/*"],
+      "@components/*": ["presentation/components/*"],
+      "@assets/*": ["presentation/assets/*"],
+}
   }
 }

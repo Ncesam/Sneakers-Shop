@@ -42,7 +42,7 @@ const NavigationMenu = ({
       backgroundColor: colors.accent,
       padding: 16,
       borderRadius: 30,
-      bottom: 20,
+      bottom: 35,
       shadowColor: colors.accent,
       shadowOffset: { height: 8, width: 0 },
       shadowRadius: 14,
@@ -55,10 +55,9 @@ const NavigationMenu = ({
       justifyContent: 'space-around',
       zIndex: 1,
       position: 'absolute',
-      top: 0,
       left: 0,
       right: 0,
-      bottom: 0,
+      bottom: 15,
     },
   });
   return (

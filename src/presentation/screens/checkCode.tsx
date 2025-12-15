@@ -1,7 +1,7 @@
 import { iconMap } from '@assets/iconMap';
-import CodeInput from '@components/codeInput';
+import CodeInput from '@uiKit/codeInput';
 import { useNavigation } from '@react-navigation/native';
-import { useTheme } from '@theme/hooks';
+import { useTheme } from '@uiKit/index';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
