@@ -1,4 +1,4 @@
-import { useTheme } from "@theme/hooks";
+import { useTheme } from "@uiKit/index";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";

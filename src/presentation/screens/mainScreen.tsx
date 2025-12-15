@@ -1,14 +1,16 @@
 import { iconMap } from '@assets/iconMap';
-import { useTheme } from '@theme/hooks';
+import { useTheme } from '@uiKit/index';
 import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import DecorateMainText from "@assets/components/decorate-main-screen-text.svg";
 import { useState } from 'react';
+import { ShadowedView } from 'react-native-fast-shadow';
 
 const MainScreen = () => {
   const { colors } = useTheme();
@@ -18,7 +20,7 @@ const MainScreen = () => {
       padding: 20,
       paddingVertical: 48,
       flex: 1,
-    }, 
+    },
     topRowContainer: {
       alignItems: "center",
       justifyContent: "space-between",
@@ -45,10 +47,42 @@ const MainScreen = () => {
       backgroundColor: colors.block,
       borderRadius: 40,
       padding: 10,
-    }
+    },
+    searchContainer: {
+      marginTop: 19,
+      flexDirection: "row",
+      gap: 14,
+      alignItems: 'center',
+      justifyContent: "space-between",
+    },
+    searchInputContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      paddingHorizontal: 26,
+      paddingVertical: 14,
+      backgroundColor: colors.block,
+      borderRadius: 14
+    },
+    searchInput: {
+      color: colors.hint,
+      marginRight: 12,
+      width: 243
+    },
+    filtersIconContainer: {
+      backgroundColor: colors.accent,
+      padding: 14,
+      borderRadius: 90,
+      shadowColor: "#0000000F",
+      shadowOffset: { width: 0, height: 4 },
+      shadowRadius: 4,
+      shadowOpacity: 1
+    },
   });
   const SideMenuIcon = iconMap["folder"];
   const ShopBagIcon = iconMap["shopBag"];
+  const FiltersIcon = iconMap["sliders"];
+  const SearchIcon = iconMap['zoom']
   const [countItemsOnShopBag, setCountItemsOnShopBag] = useState<number>(0)
   return (
     <View style={styles.container}>
@@ -62,10 +96,20 @@ const MainScreen = () => {
             <Text style={styles.topRowText}>Главная</Text>
           </View>
           <TouchableOpacity style={styles.shopBagContainer}>
-              <ShopBagIcon />
+            <ShopBagIcon />
           </TouchableOpacity>
         </View>
-        <View></View>
+        <View style={styles.searchContainer}>
+          <View style={styles.searchInputContainer}>
+            <SearchIcon color={colors.hint} />
+            <TextInput placeholderTextColor={colors.hint} placeholder='Поиск' />
+          </View>
+          <TouchableOpacity>
+            <ShadowedView style={styles.filtersIconContainer}>
+              <FiltersIcon color={colors.block} width={24} height={24} />
+            </ShadowedView>
+          </TouchableOpacity>
+        </View>
         <View>
           <View>
             <Text></Text>

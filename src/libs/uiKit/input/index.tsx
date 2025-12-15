@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { InputProps } from './props';
 import { iconMap } from '@assets/iconMap';
 import {
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useTheme } from '@theme/hooks';
+import { useTheme } from '@uiKit/index';
 
 const Input: React.FC<InputProps> = ({
   helperText,

@@ -1,4 +1,4 @@
-import { ColorSchema } from "types/theme";
+import { ColorSchema } from "./types";
 
 
 export const lightColors: ColorSchema = {

@@ -1,10 +1,10 @@
-import Button from '@components/button';
+import Button from '@uiKit/button';
 import {
   StrengthOnboardingScreen,
   TravelOnboardingScreen,
   WelcomeOnboardingScreen,
 } from '@screens/onboardings';
-import useAuth from '@storage/auth';
+import useAuth from '@data/storage/auth';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';

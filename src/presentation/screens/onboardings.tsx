@@ -1,4 +1,4 @@
-import { useTheme } from "@theme/hooks";
+import { useTheme } from "@uiKit/index";
 import { Image, StyleSheet, Text, View } from "react-native";
 import MainScreenBoot from "@assets/components/main-screen-boot.png";
 import TravelOnboardingBoot from "@assets/components/travel-onboarding-boot.png";
@@ -8,7 +8,6 @@ import LineOnboarding from "@assets/components/line-onboarding.svg";
 import WelcomeOnboardingBackground from "@assets/components/welcome-onboarding-backgroud.svg";
 import TravelOnboardingBackground from "@assets/components/travel-onboarding-background.svg";
 import StrengthOnboardingBackground from "@assets/components/strength-onboarding-background.svg";
-import Button from "@components/button";
 import LinearGradient from "react-native-linear-gradient";
 
 export const WelcomeOnboardingScreen = () => {
@@ -127,7 +126,7 @@ export const TravelOnboardingScreen = () => {
             textAlign: "center",
             color: colors.subTextLight
         }
-        
+
     });
     return (
         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={["#48B2E7", "#0076B1"]} style={styles.container}>
@@ -204,7 +203,7 @@ export const StrengthOnboardingScreen = () => {
             textAlign: "center",
             color: colors.subTextLight
         }
-        
+
     });
     return (
         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={["#48B2E7", "#0076B1"]} style={styles.container}>

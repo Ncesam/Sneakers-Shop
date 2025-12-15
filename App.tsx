@@ -1,15 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { ThemeProvider } from 'libs/uiKit/index';
+import { ThemeProvider } from '@uiKit/index';
 import React from 'react';
 import { StatusBar } from 'react-native';
-// import RootNavigation from 'presentation/navigation/RootNavigation';
-
+import RootNavigation from '@navigation/RootNavigation';
 function App() {
   return (
     <ThemeProvider>
       <NavigationContainer>
         <StatusBar hidden={true} animated={true} />
-        {/* <RootNavigation /> */}
+        <RootNavigation />
       </NavigationContainer>
     </ThemeProvider>
   );

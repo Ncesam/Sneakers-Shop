@@ -4,16 +4,13 @@ import {
   Pressable,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import { PopupProps } from './props';
 import { ShadowedView } from 'react-native-fast-shadow';
 import { BlurView } from '@react-native-community/blur';
-import { useTheme } from '@theme/hooks';
-import { iconMap } from '@assets/iconMap';
-import Button from '@components/button';
-import { Children } from 'react';
+import { useTheme } from '@uiKit/index';
+
 
 const Popup = ({ isVisible, onClose, setIsVisible, children }: PopupProps) => {
   const { colors } = useTheme();

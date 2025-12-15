@@ -1,7 +1,7 @@
-import Button from '@components/button';
-import Input from '@components/input';
+import Button from '@uiKit/button';
+import Input from '@uiKit/input';
 import { useNavigation } from '@react-navigation/native';
-import { useTheme } from '@theme/hooks';
+import { useTheme } from '@uiKit/index';
 import { useState } from 'react';
 import {
   KeyboardAvoidingView,

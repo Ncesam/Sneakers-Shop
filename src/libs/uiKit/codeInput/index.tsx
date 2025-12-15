@@ -1,7 +1,7 @@
 import { Keyboard, StyleSheet, TextInput, View } from 'react-native';
 import { CodeInputProps } from './props';
 import { FC, useRef, useState } from 'react';
-import { useTheme } from '@theme/hooks';
+import { useTheme } from '@uiKit/index';
 
 const CodeInput: FC<CodeInputProps> = ({ length }) => {
   const { colors } = useTheme();

@@ -1,13 +1,11 @@
 import React from 'react';
 import {
   BottomTabBarProps,
-  createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { iconMap } from '@assets/iconMap';
-import { useTheme } from '@theme/hooks';
+import { useTheme } from '@uiKit/index';
 import NavigationMenuBackground from '@assets/components/navigation-down-panel.svg';
-import CoverScreen from '@screens/cover';
 import { ShadowedView } from 'react-native-fast-shadow';
 
 const NavigationMenu = ({

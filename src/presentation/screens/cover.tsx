@@ -1,5 +1,5 @@
-import { useTheme } from "@theme/hooks";
-import { StyleSheet, Text, View } from "react-native";
+import { useTheme } from "@uiKit/index";
+import { StyleSheet, Text } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
 

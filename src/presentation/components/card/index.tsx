@@ -1,9 +1,8 @@
-import { useTheme } from "@theme/hooks";
+import { useTheme } from "@uiKit/index";
 import { CardProps } from "./cardProps";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { iconMap } from "@assets/iconMap";
 import React, { useState } from "react";
-import FavoriteIconSVG from "@assets/icons/favorite.svg";
 
 
 
@@ -94,7 +93,7 @@ const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }
 
 
     const favoriteIconName = IsFavorite ? "favoriteFill" : "favorite";
-    const shopCartIconName = isInShopCart ? "shopCart" : "add";
+    const shopCartIconName = isInShopCart ? "cart" : "add";
     const FavoriteIcon = iconMap[favoriteIconName];
     const ShopCartIcon = iconMap[shopCartIconName];
 
@@ -103,7 +102,7 @@ const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }
         <TouchableOpacity style={styles.outerContainer}>
             <View style={styles.innerContainer}>
                 <TouchableOpacity style={styles.favoriteCircle} hitSlop={{top: 30, bottom: 30, left:30, right:30}} onPress={toggleFavorite}>
-                    <Image source={FavoriteIcon} style={styles.favoriteHeart} />
+                    <FavoriteIcon style={styles.favoriteHeart} />
                 </TouchableOpacity>
 
                 <View style={styles.itemImageContainer}>
@@ -122,7 +121,7 @@ const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }
             <View style={styles.bottomContainer}>
                 <Text style={styles.price}>{typeof price === "number" ? `₽${price.toFixed(2)}` : price}</Text>
                 <View style={styles.shopCartContainer}>
-                    <Image source={ShopCartIcon} style={styles.shopCart} />
+                    <ShopCartIcon style={styles.shopCart} />
                 </View>
             </View>
 

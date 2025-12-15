@@ -1,4 +1,4 @@
-import { useTheme } from "@theme/hooks";
+import { useTheme } from "@uiKit/index";
 import { ButtonProps } from "./buttonProps";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { iconMap } from "@assets/iconMap";
