@@ -1,4 +1,4 @@
-import { iconMap } from '@assets/iconMap';
+import { iconMap } from '@uiKit/iconMap';
 import CodeInput from '@uiKit/codeInput';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@uiKit/index';
@@ -111,9 +111,8 @@ const CheckCodeScreen = () => {
             <TouchableOpacity disabled={true} style={{ alignItems: 'center' }}>
               <Text style={styles.sendCodeText}>Отправить еще</Text>
             </TouchableOpacity>
-            <Text style={styles.sendCodeTimer}>{`00:${
-              secondsLeft < 10 ? '0' : ''
-            }${secondsLeft}`}</Text>
+            <Text style={styles.sendCodeTimer}>{`00:${secondsLeft < 10 ? '0' : ''
+              }${secondsLeft}`}</Text>
           </View>
         </View>
       </View>

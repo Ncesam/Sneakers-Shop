@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { InputProps } from './props';
-import { iconMap } from '@assets/iconMap';
+import { iconMap } from '@uiKit/iconMap';
 import {
   StyleSheet,
   Text,

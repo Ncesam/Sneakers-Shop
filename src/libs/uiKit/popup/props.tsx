@@ -1,4 +1,4 @@
-import { iconMap } from '@assets/iconMap';
+import { iconMap } from '@uiKit/iconMap';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface PopupProps {

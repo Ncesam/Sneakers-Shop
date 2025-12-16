@@ -3,7 +3,7 @@ import {
   BottomTabBarProps,
 } from '@react-navigation/bottom-tabs';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { iconMap } from '@assets/iconMap';
+import { iconMap } from '@uiKit/iconMap';
 import { useTheme } from '@uiKit/index';
 import NavigationMenuBackground from '@assets/components/navigation-down-panel.svg';
 import { ShadowedView } from 'react-native-fast-shadow';

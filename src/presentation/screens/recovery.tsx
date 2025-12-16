@@ -1,4 +1,4 @@
-import { iconMap } from '@assets/iconMap';
+import { iconMap } from '@uiKit/iconMap';
 import Button from '@uiKit/button';
 import Input from '@uiKit/input';
 import Popup from '@uiKit/popup';

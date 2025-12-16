@@ -1,16 +1,18 @@
-import { iconMap } from '@assets/iconMap';
+import { iconMap } from '@uiKit/iconMap';
 import { useTheme } from '@uiKit/index';
 import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import DecorateMainText from "@assets/components/decorate-main-screen-text.svg";
-import { useState } from 'react';
-import { ShadowedView } from 'react-native-fast-shadow';
+import { useEffect, useState } from 'react';
+import Search from '@uiKit/search';
+import Category from '@presentation/components/category';
+import { ICategory } from '@domain/entity/category';
+
 
 const MainScreen = () => {
   const { colors } = useTheme();
@@ -48,42 +50,36 @@ const MainScreen = () => {
       borderRadius: 40,
       padding: 10,
     },
-    searchContainer: {
-      marginTop: 19,
+    categoryContainer: {
+      marginTop: 24,
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: 16
+    },
+    categoryTitle: {
+      fontFamily: "Raleway-Bold",
+      fontWeight: 600,
+      fontSize: 16,
+      color: colors.text
+    },
+    cateogriesScrollContainer: {
+      backgroundColor: colors.background
+    },
+    categoriesContainer: {
       flexDirection: "row",
-      gap: 14,
-      alignItems: 'center',
-      justifyContent: "space-between",
-    },
-    searchInputContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      paddingHorizontal: 26,
-      paddingVertical: 14,
-      backgroundColor: colors.block,
-      borderRadius: 14
-    },
-    searchInput: {
-      color: colors.hint,
-      marginRight: 12,
-      width: 243
-    },
-    filtersIconContainer: {
-      backgroundColor: colors.accent,
-      padding: 14,
-      borderRadius: 90,
-      shadowColor: "#0000000F",
-      shadowOffset: { width: 0, height: 4 },
-      shadowRadius: 4,
-      shadowOpacity: 1
-    },
+      gap: 16
+    }
   });
   const SideMenuIcon = iconMap["folder"];
   const ShopBagIcon = iconMap["shopBag"];
-  const FiltersIcon = iconMap["sliders"];
-  const SearchIcon = iconMap['zoom']
-  const [countItemsOnShopBag, setCountItemsOnShopBag] = useState<number>(0)
+  // API
+  const TestCategories: ICategory[] = [{ name: "Basketball", id: 1, countItems: 10 }, { name: "OutDoor", id: 2, countItems: 10 }, { name: "Football", id: 3, countItems: 10 }, { name: "Voleyball", id: 4, countItems: 10 }, { name: "Все", id: 5, countItems: 10 }]
+  const [categories, setCategories] = useState<ICategory[]>();
+  const [countItemsOnShopBag, setCountItemsOnShopBag] = useState<number>(0);
+
+  useEffect(() => {
+    setCategories(TestCategories);
+  }, [])
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{ paddingBottom: 51 }}>
@@ -99,25 +95,14 @@ const MainScreen = () => {
             <ShopBagIcon />
           </TouchableOpacity>
         </View>
-        <View style={styles.searchContainer}>
-          <View style={styles.searchInputContainer}>
-            <SearchIcon color={colors.hint} />
-            <TextInput placeholderTextColor={colors.hint} placeholder='Поиск' />
-          </View>
-          <TouchableOpacity>
-            <ShadowedView style={styles.filtersIconContainer}>
-              <FiltersIcon color={colors.block} width={24} height={24} />
-            </ShadowedView>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <View>
-            <Text></Text>
-            <TouchableOpacity>
-              <Text></Text>
-            </TouchableOpacity>
-          </View>
-          <View></View>
+        <Search withFilter />
+        <View style={styles.categoryContainer}>
+          <Text style={styles.categoryTitle}>Категории</Text>
+          <ScrollView horizontal style={styles.cateogriesScrollContainer} contentContainerStyle={styles.categoriesContainer} showsHorizontalScrollIndicator={false} >
+            {categories ? categories.map((category, index) =>
+              <Category id={category.id} name={category.name} key={index} />
+            ) : <Text>Категорий нету</Text>}
+          </ScrollView>
         </View>
         <View>
           <View>
