@@ -37,11 +37,6 @@ const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }
       backgroundColor: colors.background,
       alignItems: "center",
       justifyContent: "center",
-
-    },
-    favoriteHeart: {
-      width: 15,
-      height: 13,
     },
     itemImageContainer: {
       alignItems: "center",
@@ -50,6 +45,7 @@ const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }
     itemImage: {
       width: 118,
       height: 70,
+      zIndex: -1
     },
     textContainer: {
       flexDirection: "column",
@@ -102,11 +98,11 @@ const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }
     <TouchableOpacity style={styles.outerContainer}>
       <View style={styles.innerContainer}>
         <TouchableOpacity style={styles.favoriteCircle} hitSlop={{ top: 30, bottom: 30, left: 30, right: 30 }} onPress={toggleFavorite}>
-          <FavoriteIcon style={styles.favoriteHeart} />
+          <FavoriteIcon width={17} color={IsFavorite ? colors.red : colors.text} />
         </TouchableOpacity>
 
         <View style={styles.itemImageContainer}>
-          <Image source={imageURI ? imageURI : require("@assets/components/test-image-item.png")} style={styles.itemImage} />
+          <Image source={imageURI ? imageURI : require("@assets/components/test-image-item.png")} style={styles.itemImage} resizeMode="center" />
 
         </View>
         <View style={styles.textContainer}>

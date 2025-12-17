@@ -3,7 +3,7 @@ import CodeInput from '@uiKit/codeInput';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@uiKit/index';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const CheckCodeScreen = () => {
   const { colors } = useTheme();

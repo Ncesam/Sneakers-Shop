@@ -2,6 +2,7 @@ import { iconMap } from '@uiKit/iconMap';
 import { useTheme } from '@uiKit/index';
 import {
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,6 +13,9 @@ import { useEffect, useState } from 'react';
 import Search from '@uiKit/search';
 import Category from '@presentation/components/category';
 import { ICategory } from '@domain/entity/category';
+import useAppStore from '@data/storage/app';
+import Card from '@presentation/components/card';
+import { useNavigation } from '@react-navigation/native';
 
 
 const MainScreen = () => {
@@ -62,24 +66,43 @@ const MainScreen = () => {
       fontSize: 16,
       color: colors.text
     },
-    cateogriesScrollContainer: {
+    categoriesScrollContainer: {
       backgroundColor: colors.background
     },
     categoriesContainer: {
       flexDirection: "row",
       gap: 16
+    },
+    popularCardContainer: {
+      flexDirection: "row",
+      gap: 15
+    },
+    popularTitle: {
+      fontFamily: "Raleway-Medium",
+      fontSize: 16,
+      lineHeight: 24,
+      color: colors.text
+    },
+    popularTitleContainer: {
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexDirection: "row",
+      marginVertical: 24
     }
+
   });
   const SideMenuIcon = iconMap["folder"];
   const ShopBagIcon = iconMap["shopBag"];
+  const setIsDarkBar = useAppStore(state => state.setIsDarkBar);
+  const navigation = useNavigation();
   // API
   const TestCategories: ICategory[] = [{ name: "Basketball", id: 1, countItems: 10 }, { name: "OutDoor", id: 2, countItems: 10 }, { name: "Football", id: 3, countItems: 10 }, { name: "Voleyball", id: 4, countItems: 10 }, { name: "Все", id: 5, countItems: 10 }]
   const [categories, setCategories] = useState<ICategory[]>();
   const [countItemsOnShopBag, setCountItemsOnShopBag] = useState<number>(0);
-
   useEffect(() => {
     setCategories(TestCategories);
-  }, [])
+    setIsDarkBar(true);
+  }, []);
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{ paddingBottom: 51 }}>
@@ -98,20 +121,25 @@ const MainScreen = () => {
         <Search withFilter />
         <View style={styles.categoryContainer}>
           <Text style={styles.categoryTitle}>Категории</Text>
-          <ScrollView horizontal style={styles.cateogriesScrollContainer} contentContainerStyle={styles.categoriesContainer} showsHorizontalScrollIndicator={false} >
+          <ScrollView horizontal style={styles.categoriesScrollContainer} contentContainerStyle={styles.categoriesContainer} showsHorizontalScrollIndicator={false} >
             {categories ? categories.map((category, index) =>
               <Category id={category.id} name={category.name} key={index} />
             ) : <Text>Категорий нету</Text>}
           </ScrollView>
         </View>
         <View>
-          <View>
-            <Text></Text>
-            <TouchableOpacity>
-              <Text></Text>
+          <View style={styles.popularTitleContainer}>
+            <Text style={styles.popularTitle}>Популярное</Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Popular", {})}>
+              <Text style={{ color: colors.accent }}>
+                Все
+              </Text>
             </TouchableOpacity>
           </View>
-          <View></View>
+          <View style={styles.popularCardContainer}>
+            <Card price={1000} title='Nike air max' />
+            <Card price={1000} title='Nike air max' />
+          </View>
         </View>
         <View>
           <View>

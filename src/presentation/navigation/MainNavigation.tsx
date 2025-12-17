@@ -21,7 +21,7 @@ const MainNavigation = () => {
         },
       }}
     >
-      <Tab.Screen name="home" component={StoreStack} />
+      <Tab.Screen name="home" component={MainScreen} />
       <Tab.Screen name="favorite" component={CoverScreen} />
       <Tab.Screen name="shopBag" component={CoverScreen} />
       <Tab.Screen name="notification" component={CoverScreen} />

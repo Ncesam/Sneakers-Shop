@@ -1,7 +1,7 @@
 import LoadingScreen from '@screens/loading';
 import OnboardingScreens from './Onboarding';
 import useAuth from '@data/storage/auth';
-import MainNavigation from './MainNavigation';
+import StoreStack from './StoreStack';
 
 const RootNavigation = () => {
   const { isLoading, hasSeenOnboarding } = useAuth();
@@ -11,6 +11,6 @@ const RootNavigation = () => {
   if (!hasSeenOnboarding) {
     return <OnboardingScreens />;
   }
-  return <MainNavigation />;
+  return <StoreStack />;
 };
 export default RootNavigation;
