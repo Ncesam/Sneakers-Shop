@@ -4,6 +4,8 @@ import NavigationMenu from './navigation-menu';
 import CoverScreen from '@screens/cover';
 import MainScreen from '@screens/mainScreen';
 import StoreStack from './StoreStack';
+import FavoriteScreen from '@presentation/screens/favoriteScreen';
+import ShopBagScreen from '@presentation/screens/shopBagScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,8 +24,8 @@ const MainNavigation = () => {
       }}
     >
       <Tab.Screen name="home" component={MainScreen} />
-      <Tab.Screen name="favorite" component={CoverScreen} />
-      <Tab.Screen name="shopBag" component={CoverScreen} />
+      <Tab.Screen name="favorite" component={FavoriteScreen} />
+      <Tab.Screen name="shopBag" component={ShopBagScreen} options={} />
       <Tab.Screen name="notification" component={CoverScreen} />
       <Tab.Screen name="profile" component={CoverScreen} />
     </Tab.Navigator>

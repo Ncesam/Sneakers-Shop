@@ -2,12 +2,15 @@ import { useTheme } from "@uiKit/index";
 import { CardProps } from "./cardProps";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { iconMap } from "@uiKit/iconMap";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { ISneaker } from "@domain/entity/sneaker";
 
 
 
-const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }: CardProps) => {
+const Card: FC<ISneaker> = ({ isFavorite, isInShopCart, isBestSeller, cost, name, imageURI, id }) => {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const styles = StyleSheet.create({
     outerContainer: {
       backgroundColor: colors.block,
@@ -95,7 +98,7 @@ const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }
 
 
   return (
-    <TouchableOpacity style={styles.outerContainer}>
+    <TouchableOpacity style={styles.outerContainer} onPress={() => navigation.navigate("SneakerDetails", { id: id })}>
       <View style={styles.innerContainer}>
         <TouchableOpacity style={styles.favoriteCircle} hitSlop={{ top: 30, bottom: 30, left: 30, right: 30 }} onPress={toggleFavorite}>
           <FavoriteIcon width={17} color={IsFavorite ? colors.red : colors.text} />
@@ -111,13 +114,13 @@ const Card = ({ isFavorite, isInShopCart, isBestSeller, price, title, imageURI }
               <Text style={styles.textBestSeller}>BEST SELLER</Text>
             </View> :
             null}
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">{name}</Text>
         </View>
       </View>
       <View style={styles.bottomContainer}>
-        <Text style={styles.price}>{typeof price === "number" ? `₽${price.toFixed(2)}` : price}</Text>
+        <Text style={styles.price}>{typeof cost === "number" ? `₽${cost.toFixed(2)}` : cost}</Text>
         <View style={styles.shopCartContainer}>
-          <ShopCartIcon style={styles.shopCart} />
+          <ShopCartIcon style={styles.shopCart} width={15} height={15} color={colors.block} />
         </View>
       </View>
 

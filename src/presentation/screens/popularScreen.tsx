@@ -1,12 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import { FlatList, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StoreStackProps } from "@presentation/navigation/StoreStack";
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTheme } from "@uiKit/index";
 import { iconMap } from "@uiKit/iconMap";
 import useAppStore from "@data/storage/app";
 import { ISneaker } from "@domain/entity/sneaker";
-import Category from "@presentation/components/category";
 import { ICategory } from "@domain/entity/category";
 import Card from "@presentation/components/card";
 import { useNavigation } from "@react-navigation/native";
