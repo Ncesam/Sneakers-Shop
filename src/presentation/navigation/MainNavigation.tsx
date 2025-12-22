@@ -25,7 +25,7 @@ const MainNavigation = () => {
     >
       <Tab.Screen name="home" component={MainScreen} />
       <Tab.Screen name="favorite" component={FavoriteScreen} />
-      <Tab.Screen name="shopBag" component={ShopBagScreen} options={} />
+      <Tab.Screen name="shopBag" component={ShopBagScreen} options={ } />
       <Tab.Screen name="notification" component={CoverScreen} />
       <Tab.Screen name="profile" component={CoverScreen} />
     </Tab.Navigator>
