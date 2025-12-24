@@ -25,6 +25,7 @@ const StoreStack = () => {
       <Stack.Screen name="Category" component={CategoryScreen} />
       <Stack.Screen name="Popular" component={PopularScreen} />
       <Stack.Screen name="SneakerDetails" component={SneakerDetailsScreen} />
+      <Stack.Screen name="ShopBag" component={ShopBagScreen} />
     </Stack.Navigator>
   );
 };

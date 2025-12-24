@@ -10,7 +10,14 @@ export interface ISneaker {
 }
 
 interface IVariantSneaker {
+    id: number,
     name: string
     color?: string
     imageURI?: string;
+}
+
+export interface IShopBagSneaker {
+  idSneaker: number,
+  count: number,
+  variantId: number,
 }

@@ -2,6 +2,8 @@ import { IAuthStore } from 'domain/entity/authStore';
 import { createMMKV } from 'react-native-mmkv';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+
+
 const mmkvStorage = createMMKV({
   id: 'authStorage',
 });
@@ -23,6 +25,7 @@ const useAuth = create(
       isLoading: false,
       isLogged: false,
       hasSeenOnboarding: false,
+      userToken: "",
 
       login: () => set({ isLogged: true }),
       logout: () => set({ isLogged: false }),
@@ -35,13 +38,13 @@ const useAuth = create(
       partialize: state => ({
         hasSeenOnboarding: state.hasSeenOnboarding,
         userToken: state.userToken,
-        isLoggedIn: state.isLoggedIn,
+        isLogged: state.isLogged,
       }),
       onRehydrateStorage: state => {
         state.isLoading = true;
-        return state => {
-          state.isLoading = false;
-        };
+        return () => ({
+          isLoading:  false
+        });
       },
     },
   ),
