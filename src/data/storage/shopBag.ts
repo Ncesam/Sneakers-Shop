@@ -30,17 +30,31 @@ const useShopBagStore = create(persist<IShopBagStore>(
       sneakers: [...state.sneakers, sneaker]
     })),
     getAllSneakers: () => get().sneakers,
-    removeSneaker: (id: number) => set(state => ({
-      sneakers: state.sneakers.filter(sneaker => sneaker.id !== id)
+    removeSneaker: (id: string) => set(state => ({
+      sneakers: state.sneakers.filter(sneaker => sneaker.idSneaker !== id)
     })),
-    getSneaker: (id: number) => {
-
-    },
-    incrementCountSneaker: (id: number) => set(state => ({
-      sneakers: [...state.sneakers.map((value, _) => value.)]
+    getSneaker: (sneakerId: string, variantId: string) => get().sneakers.find((value, _) => value.idSneaker === sneakerId && value.variantId === variantId),
+    incrementCountSneakers: (id: string) => set(state => ({
+      sneakers: [...state.sneakers.map((value, _) => {
+        if (value.idSneaker === id) {
+          value.count++
+        };
+        return value
+      }
+    )]
+    })),
+    decrementCountSneakers: (id: string) => set(state => ({
+      sneakers: [...state.sneakers.map((value, _) => {
+         if (value.idSneaker === id) {
+          value.count++
+        };
+        return value
+      })]
     })),
     setIsLoading: (value: boolean) => set({ isLoading: value }),
-
+    setSneakers: (sneakers: IShopBagSneaker[]) => set(
+    {sneakers: sneakers}
+    ),
 
     sneakers: [],
     isLoading: false,

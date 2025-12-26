@@ -1,12 +1,147 @@
 import useAppStore from "@data/storage/app";
+import useShopBagStore from "@data/storage/shopBag";
 import { ISneaker } from "@domain/entity/sneaker";
+import ShopCartCard from "@presentation/components/shopCartCard";
 import { useNavigation } from "@react-navigation/native";
 import { iconMap } from "@uiKit/iconMap";
 import { useTheme } from "@uiKit/index";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-
+const TestSneakers: ISneaker[] = [
+  {
+    "id": "1",
+    "name": "Nike Air Max 270",
+    "description": "Кроссовки Nike Air Max 270, вдохновленные двумя легендарными моделями Air: Air Max 180 и Air Max 93. Самая большая вставка Air в области пятки обеспечивает мягкость при каждом шаге.",
+    "cost": 12990,
+    "variants": [
+      {
+        "id": "0",
+        "name": "Black/White",
+        "color": "#000000",
+        "imageURI": "https://example.com/images/nike-270-black.jpg"
+      },
+      {
+        "id": "1",
+        "name": "Triple White",
+        "color": "#FFFFFF",
+        "imageURI": "https://example.com/images/nike-270-white.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Adidas Ultraboost 22",
+    "description": "Беговые кроссовки с промежуточной подошвой BOOST для максимального возврата энергии. Система Linear Energy Push обеспечивает дополнительную устойчивость.",
+    "cost": 15500,
+    "variants": [
+      {
+        "id": "10",
+        "name": "Solar Yellow",
+        "color": "#F9FF33",
+        "imageURI": "https://example.com/images/adidas-ub-yellow.jpg"
+      },
+      {
+        "id": "11",
+        "name": "Core Black",
+        "color": "#1A1A1A",
+        "imageURI": "https://example.com/images/adidas-ub-black.jpg"
+      },
+      {
+        "id": "12",
+        "name": "Cloud White",
+        "color": "#F5F5F5",
+        "imageURI": "https://example.com/images/adidas-ub-white.jpg"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "New Balance 574",
+    "description": "Классическая модель, сочетающая в себе комфорт и долговечность. Верх из замши и сетки, технология ENCAP для поддержки стопы.",
+    "cost": 10900,
+    "variants": [
+      {
+        "id": "20",
+        "name": "Navy Blue",
+        "color": "#000080",
+        "imageURI": "https://example.com/images/nb-574-navy.jpg"
+      },
+      {
+        "id": "21",
+        "name": "Grey Classic",
+        "color": "#808080",
+        "imageURI": "https://example.com/images/nb-574-grey.jpg"
+      },
+      {
+        "id": "22",
+        "name": "Burgundy",
+        "color": "#800020",
+        "imageURI": "https://example.com/images/nb-574-burgundy.jpg"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Puma RS-X3",
+    "description": "Массивная форма, яркие цветовые комбинации и превосходная амортизация. Переосмысление ретро-стиля в современном исполнении.",
+    "cost": 9490,
+    "variants": [
+      {
+        "id": "30",
+        "name": "Puzzle Multi",
+        "color": "#FF5733",
+        "imageURI": "https://example.com/images/puma-rsx-multi.jpg"
+      },
+      {
+        "id": "31",
+        "name": "Limestone",
+        "color": "#D3D3D2",
+        "imageURI": "https://example.com/images/puma-rsx-grey.jpg"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Reebok Classic Leather",
+    "description": "Минималистичный дизайн и верх из мягкой натуральной кожи. Неподвластный времени стиль, который подходит к любому образу.",
+    "cost": 8990,
+    "variants": [
+      {
+        "id": "40",
+        "name": "Pure White",
+        "color": "#FFFFFF",
+        "imageURI": "https://example.com/images/reebok-classic-white.jpg"
+      },
+      {
+        "id": "41",
+        "name": "Deep Black",
+        "color": "#000000",
+        "imageURI": "https://example.com/images/reebok-classic-black.jpg"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "name": "Jordan Air Jordan 1 Mid",
+    "description": "Легендарные баскетбольные кроссовки. Сочетание стиля площадки и повседневного комфорта с модулем Air-Sole в пятке.",
+    "cost": 18200,
+    "variants": [
+      {
+        "id": "50",
+        "name": "Chicago",
+        "color": "#FF0000",
+        "imageURI": "https://example.com/images/jordan-mid-red.jpg"
+      },
+      {
+        "id": "51",
+        "name": "Royal Blue",
+        "color": "#002366",
+        "imageURI": "https://example.com/images/jordan-mid-blue.jpg"
+      }
+    ]
+  }
+];
 const ShopBagScreen = () => {
   const { colors } = useTheme();
   const styles = StyleSheet.create({
@@ -45,61 +180,20 @@ const ShopBagScreen = () => {
     },
   });
   const setIsDarkBar = useAppStore(state => state.setIsDarkBar);
+  const { setSneakers, sneakers } = useShopBagStore(state => ({ setSneakers: state.setSneakers, sneakers: state.sneakers }))
   const navigation = useNavigation();
-  const [sneakers, setSneakers] = useState<ISneaker[]>();
-  const TestSneakers: ISneaker[] = [
-    {
-      id: 1,
-      name: "Nike Air Max 270",
-      description: "Кроссовки Nike Air Max 270, вдохновленные двумя легендарными моделями Air: Air Max 180 и Air Max 93. Самая большая вставка Air в области пятки обеспечивает мягкость при каждом шаге.",
-      cost: 12990,
-      variants: [
-        {
-          name: "Black/White",
-          color: "#000000",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_001_00127202_RT_BT_AL?$zoom$"
-        },
-        {
-          name: "Triple White",
-          color: "#FFFFFF",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_100_00127202_RT_BT_AL?$zoom$"
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: "Adidas Ultraboost 22",
-      description: "Беговые кроссовки с технологией BOOST, которая возвращает энергию каждого шага. Верх из материала Primeknit для идеальной посадки.",
-      cost: 15500,
-      variants: [
-        {
-          name: "Solar Red",
-          color: "#FF4500",
-          imageURI: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/376043/01/sv01/fnd/PNA/fmt/png/RS-Z-Reinven-Sneakers"
-        }
-      ]
-    },
-    {
-      id: 3,
-      name: "Jordan Retro 4",
-      description: "Классика баскетбольного стиля. Модель 1989 года, ставшая иконой уличной моды благодаря сетчатым вставкам и уникальной системе шнуровки.",
-      cost: 24000,
-      variants: [
-        {
-          name: "Military Blue",
-          color: "#4B92DB",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_400_00127202_RT_BT_AL?$zoom$"
-        }
-      ]
-    }
-  ];
+
   useEffect(() => {
     setIsDarkBar(true);
-    const fetchItems = async () => {
+    if (sneakers.length === 0) {
+      const data = TestSneakers.map((value) => ({
+        variantId: value.variants ? value.variants[0].id : "0",
+        sneakerId: value.id,
+        count: 1
+      }));
+      setSneakers(data);
     }
-    setSneakers(TestSneakers);
-    fetchItems()
-  }, [])
+  }, []);
   const BackIcon = iconMap["back"];
   const FavoriteIcon = iconMap['favorite'];
   function getPlural(n: number) {
@@ -124,12 +218,20 @@ const ShopBagScreen = () => {
         </TouchableOpacity>
       </View>
       <View>
-        {sneakers?.length > 0 ? (
+        {sneakers ? sneakers.length > 0 ? (
           <Text>{sneakers?.length} {getPlural(sneakers?.length)}</Text>
-          
-        ) : <Text>Товаров нету</Text>}
-
+        ) : <Text>Товаров нету</Text> : <Text>Товаров нету</Text>}
       </View>
+      {sneakers.map((sneaker) => {
+        const itemData = TestSneakers.find(s => s.id === sneaker.sneakerId);
+        return (
+          <ShopCartCard
+            cost={itemData?.cost || 0}
+            name={itemData?.name || "Unknown"}
+            key={sneaker.sneakerId}
+          />
+        )
+      })}
     </View>
   )
 }

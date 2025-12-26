@@ -1,14 +1,14 @@
 import { useTheme } from "@uiKit/index";
-import { CardProps } from "./cardProps";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { iconMap } from "@uiKit/iconMap";
 import React, { FC, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ISneaker } from "@domain/entity/sneaker";
+import useAuthStore from "@data/storage/auth";
 
 
 
-const Card: FC<ISneaker> = ({ isFavorite, isInShopCart, isBestSeller, cost, name, imageURI, id }) => {
+const Card: FC<ISneaker> = ({ isFavorite, isInShopCart, isBestSeller, cost, name, id, variants }) => {
   const { colors } = useTheme();
   const navigation = useNavigation();
   const styles = StyleSheet.create({
@@ -88,14 +88,16 @@ const Card: FC<ISneaker> = ({ isFavorite, isInShopCart, isBestSeller, cost, name
     }
   })
   const [IsFavorite, setIsFavorite] = useState<boolean>(isFavorite ? true : false);
-  const toggleFavorite = () => setIsFavorite((prev) => !prev);
+  const toggleFavorite = () => {
+
+  };
 
 
   const favoriteIconName = IsFavorite ? "favoriteFill" : "favorite";
   const shopCartIconName = isInShopCart ? "cart" : "add";
   const FavoriteIcon = iconMap[favoriteIconName];
   const ShopCartIcon = iconMap[shopCartIconName];
-
+  const imageURI = variants ? variants[0].imageURI : require("@assets/components/test-image-item.png")
 
   return (
     <TouchableOpacity style={styles.outerContainer} onPress={() => navigation.navigate("SneakerDetails", { id: id })}>
@@ -105,7 +107,7 @@ const Card: FC<ISneaker> = ({ isFavorite, isInShopCart, isBestSeller, cost, name
         </TouchableOpacity>
 
         <View style={styles.itemImageContainer}>
-          <Image source={imageURI ? imageURI : require("@assets/components/test-image-item.png")} style={styles.itemImage} resizeMode="center" />
+          <Image source={imageURI} style={styles.itemImage} resizeMode="center" />
 
         </View>
         <View style={styles.textContainer}>

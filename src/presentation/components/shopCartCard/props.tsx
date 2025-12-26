@@ -1,5 +1,6 @@
 
 
 export interface ShopCartCardProps {
-  id: number
+  name: string,
+  cost: number,
 }

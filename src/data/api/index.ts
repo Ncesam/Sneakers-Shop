@@ -1,5 +1,4 @@
 import { IListSneakersResponse } from "@domain/apiTypes/sneaker";
-import { useMMKV } from "react-native-mmkv";
 
 
 class API {
@@ -28,20 +27,25 @@ class API {
 }
 
 
-class SneakerClient {
-
-  public static async fetchSneakers() {
-    const jsonResponse = await API.request("GET", "/api/collections/sneakers/records?perPage=10&expand=variants(sneaker_id)&filter=(category~'popular')", {
+export class SneakerClient {
+  public static async fetchCategory(category: string){
+    const jsonResponse = await API.request("GET", `/api/collections/sneakers/records?perPage=10&expand=variants(sneaker_id)&filter=(category~'${category}')`, {
       'Content-Type': "application/json",
     }, {})
     return jsonResponse as IListSneakersResponse
   }
-
-  public static fetchCategory(){
-    const jsonResponse = await API.request("GET", "/api/collections/sneakers/records?perPage=10&expand=variants(sneaker_id)&filter=(category~'popular')", {
-      'Content-Type': "application/json",
-    }, {})
-    return jsonResponse as IListSneakersResponse
-  }
-
 }
+
+
+// export class UserClient {
+//   public static async getFavoriteSneakers(userId: string) {
+//     const jsonResponse = await API.request("PATCH", `/api/collectons/users/records/${userId}`, {}, {})
+//   }
+
+//   public static async addFavoriteSneaker(id: number, userId: string) {
+//     const body = {
+//       favorites:
+//     }
+//     const jsonResponse = await API.request("PATCH", `/api/collectons/users/records/${userId}`, {}, )
+//   }
+// }

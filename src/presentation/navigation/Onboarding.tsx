@@ -4,7 +4,7 @@ import {
   TravelOnboardingScreen,
   WelcomeOnboardingScreen,
 } from '@screens/onboardings';
-import useAuth from '@data/storage/auth';
+import useAuthStore from '@data/storage/auth';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
@@ -15,7 +15,7 @@ const OnboardingScreenArray: Array<React.FC> = [
 ];
 const OnboardingScreens = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const completeOnBoarding = useAuth(state => state.completeOnBoarding);
+  const completeOnBoarding = useAuthStore(state => state.completeOnBoarding);
   const styles = StyleSheet.create({
     container: {
       width: '100%',

@@ -9,6 +9,7 @@ import { ISneaker } from "@domain/entity/sneaker";
 import Category from "@presentation/components/category";
 import { ICategory } from "@domain/entity/category";
 import Card from "@presentation/components/card";
+import { SneakerClient } from "@data/api";
 
 
 type Props = NativeStackScreenProps<StoreStackProps, "Category">;
@@ -67,148 +68,13 @@ const CategoryScreen: FC<Props> = ({ navigation, route }) => {
   const [sneakers, setSneakers] = useState<ISneaker[]>();
   const TestCategories: ICategory[] = [{ name: "Basketball", id: 1, countItems: 10 }, { name: "OutDoor", id: 2, countItems: 10 }, { name: "Football", id: 3, countItems: 10 }, { name: "Voleyball", id: 4, countItems: 10 }, { name: "Все", id: 5, countItems: 10 }]
   const [categories, setCategories] = useState<ICategory[]>();
-  const TestSneakers: ISneaker[] = [
-    {
-      id: 1,
-      name: "Nike Air Max 270",
-      description: "Кроссовки Nike Air Max 270, вдохновленные двумя легендарными моделями Air: Air Max 180 и Air Max 93. Самая большая вставка Air в области пятки обеспечивает мягкость при каждом шаге.",
-      cost: 12990,
-      variants: [
-        {
-          name: "Black/White",
-          color: "#000000",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_001_00127202_RT_BT_AL?$zoom$"
-        },
-        {
-          name: "Triple White",
-          color: "#FFFFFF",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_100_00127202_RT_BT_AL?$zoom$"
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: "Adidas Ultraboost 22",
-      description: "Беговые кроссовки с технологией BOOST, которая возвращает энергию каждого шага. Верх из материала Primeknit для идеальной посадки.",
-      cost: 15500,
-      variants: [
-        {
-          name: "Solar Red",
-          color: "#FF4500",
-          imageURI: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/376043/01/sv01/fnd/PNA/fmt/png/RS-Z-Reinven-Sneakers"
-        }
-      ]
-    },
-    {
-      id: 3,
-      name: "Jordan Retro 4",
-      description: "Классика баскетбольного стиля. Модель 1989 года, ставшая иконой уличной моды благодаря сетчатым вставкам и уникальной системе шнуровки.",
-      cost: 24000,
-      variants: [
-        {
-          name: "Military Blue",
-          color: "#4B92DB",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_400_00127202_RT_BT_AL?$zoom$"
-        }
-      ]
-    },
-    {
-      id: 4,
-      name: "Puma RS-X3",
-      description: "Массивный силуэт в стиле ретро-футуризма. Смелые цветовые решения и многослойные материалы верха.",
-      cost: 9900,
-      variants: [
-        {
-          name: "Multi-color",
-          color: "#FFD700",
-          imageURI: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/373308/02/sv01/fnd/PNA/fmt/png/RS-X%C2%B3-Puzzle-Sneakers"
-        }
-      ]
-    },
-    {
-      id: 5,
-      name: "Asics Gel-Lyte III",
-      description: "Знаменитая модель с раздвоенным язычком. Технология Gel обеспечивает отличную амортизацию и комфорт при длительной ходьбе.",
-      cost: 11000,
-      variants: [
-        {
-          name: "Sage Green",
-          color: "#87A96B",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_300_00127202_RT_BT_AL?$zoom$"
-        }
-      ]
-    }, {
-      id: 6,
-      name: "New Balance 550",
-      description: "Возвращение легенды баскетбольных площадок 80-х. Низкий силуэт и премиальная кожа делают их идеальными для повседневной носки.",
-      cost: 18200,
-      variants: [
-        {
-          name: "White/Green",
-          color: "#1B4D3E",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_100_00127202_RT_BT_AL?$zoom$"
-        }
-      ]
-    },
-    {
-      id: 7,
-      name: "Reebok Club C 85",
-      description: "Минималистичные теннисные кроссовки из мягкой кожи. Чистый дизайн, который подходит под любой образ.",
-      cost: 8500,
-      variants: [
-        {
-          name: "Vintage Chalk",
-          color: "#F5F5DC",
-          imageURI: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/374915/01/sv01/fnd/PNA/fmt/png/RS-Z-College-Sneakers"
-        }
-      ]
-    },
-    {
-      id: 8,
-      name: "Nike Dunk Low",
-      description: "Изначально созданные для баскетбола, Данки стали иконой скейтбординга и уличной моды. Невероятное количество расцветок на любой вкус.",
-      cost: 14900,
-      variants: [
-        {
-          name: "Panda",
-          color: "#000000",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_001_00127202_RT_BT_AL?$zoom$"
-        }
-      ]
-    },
-    {
-      id: 9,
-      name: "Converse Chuck 70",
-      description: "Классические высокие кеды с улучшенной амортизацией и более плотной парусиной. Нестареющая классика.",
-      cost: 7200,
-      variants: [
-        {
-          name: "Classic Black",
-          color: "#000000",
-          imageURI: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/194449/01/sv01/fnd/PNA/fmt/png/Fuse-Training-Shoes"
-        }
-      ]
-    },
-    {
-      id: 10,
-      name: "Vans Old Skool",
-      description: "Первые кроссовки для скейтбординга с фирменной боковой полоской. Прочный верх из замши и канваса с вафельной подошвой.",
-      cost: 6800,
-      variants: [
-        {
-          name: "Navy Blue",
-          color: "#000080",
-          imageURI: "https://images.asics.com/is/image/asics/1201A019_400_00127202_RT_BT_AL?$zoom$"
-        }
-      ]
-    }
-  ];
   useEffect(() => {
     setIsDarkBar(true);
     const fetchItems = async () => {
+      const sneakers = await SneakerClient.fetchCategory(route.params.name);
+      setSneakers(sneakers.items);
     }
     setCategories(TestCategories);
-    setSneakers(TestSneakers);
     fetchItems()
   }, [])
 

@@ -1,5 +1,5 @@
 export interface ISneaker {
-    id: number
+    id: string
     name: string
     description?: string
     variants?: Array<IVariantSneaker>
@@ -10,14 +10,14 @@ export interface ISneaker {
 }
 
 interface IVariantSneaker {
-    id: number,
+    id: string,
     name: string
     color?: string
     imageURI?: string;
 }
 
 export interface IShopBagSneaker {
-  idSneaker: number,
+  sneakerId: string,
   count: number,
-  variantId: number,
+  variantId: string,
 }

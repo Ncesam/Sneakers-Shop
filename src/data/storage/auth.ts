@@ -19,7 +19,7 @@ const customStorage = createJSONStorage(() => ({
     return mmkvStorage.remove(name);
   },
 }));
-const useAuth = create(
+const useAuthStore = create(
   persist<IAuthStore>(
     set => ({
       isLoading: false,
@@ -40,15 +40,9 @@ const useAuth = create(
         userToken: state.userToken,
         isLogged: state.isLogged,
       }),
-      onRehydrateStorage: state => {
-        state.isLoading = true;
-        return () => ({
-          isLoading:  false
-        });
-      },
     },
   ),
 );
 
-export default useAuth;
+export default useAuthStore;
 

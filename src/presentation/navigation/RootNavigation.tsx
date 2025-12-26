@@ -1,10 +1,11 @@
 import LoadingScreen from '@screens/loading';
 import OnboardingScreens from './Onboarding';
-import useAuth from '@data/storage/auth';
+import useAuthStore from '@data/storage/auth';
 import StoreStack from './StoreStack';
 
 const RootNavigation = () => {
-  const { isLoading, hasSeenOnboarding } = useAuth();
+  const { isLoading, hasSeenOnboarding } = useAuthStore();
+  console.log(isLoading);
   if (isLoading) {
     return <LoadingScreen />;
   }
